@@ -55,7 +55,7 @@ services:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: devdbpass
   
-  # Adminer: Simple web GUI for relational DBs (will not connect to MongoDB without extensions)
+  # Adminer: Simple web GUI for relational DBs
   adminer:
     image: adminer
     restart: unless-stopped
