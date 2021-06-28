@@ -30,13 +30,13 @@ See https://docs.docker.com/get-docker/ for help installing Docker on your syste
 
 To start the application stack from the directory containing the `dev-apps.yaml` file, execute the following:
 
-    `docker-compose -f dev-apps.yaml up -d`
+    docker-compose -f dev-apps.yaml up -d
 
 _Note:_ The `-d` flag runs the applications in the background ("detached mode").
 
 To stop the applications, execute:
 
-    `docker-compose -f dev-apps.yaml down`
+    docker-compose -f dev-apps.yaml down
 
 ## Accessing Services
 
@@ -46,7 +46,7 @@ For example, the MySQL container exposes port 3306 on localhost, which can be us
 
 _Note:_ To access the command line interface for the MySQL database, you must execute commands inside the docker container, such as
 
-    `docker exec -it dev-apps_mysql_1 mysql -u admin -p`
+    docker exec -it dev-apps_mysql_1 mysql -u admin -p
 
 which will prompt for the password for the `admin` user.
 
@@ -56,4 +56,4 @@ Here, `docker exec -it` instructs Docker to execute a command in an interactive 
 
 Many of these applications (such as databases) require persistent storage, which is accomplished using named Docker volumes. By default, Docker volumes are stored in the system at `/var/lib/docker/volumes/`, but this can vary depending on your Docker installation. For example, my Docker installation (running on Windows 10 with WSL2) keeps its volumes in a network directory
 
-    `\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes`
+    \\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes
