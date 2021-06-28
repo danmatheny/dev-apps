@@ -1,0 +1,82 @@
+# Docker-Compose YAML for a development applications
+
+
+version: "3.9"
+
+services:
+  # MongoDB: NoSQL document database
+  mongodb:
+    image: mongo
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: devdbpass
+  
+  # PosgreSQL: Relational database
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: devdbpass
+      POSTGRES_DB: dev
+  
+  # MySQL: Relational database
+  mysql:
+    image: mysql
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: devdbpass
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: devdbpass
+      MYSQL_DATABASE: dev
+    command: --default-authentication-plugin=mysql_native_password
+
+  # Mongo Express: Simple web GUI for MongoDB
+  mongo-express:
+    image: mongo-express
+    restart: unless-stopped
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongodb
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: devdbpass
+  
+  # Adminer: Simple web GUI for relational DBs (will not connect to MongoDB without extensions)
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+
+  # MinIO: Object Storage (S3 compatible)
+  minio:
+    image: minio/minio
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    volumes:
+      - minio-storage:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: devstoragepass
+    command: server /data
+
+volumes:
+  mongo-data:
+  postgres-data:
+  mysql-data:
+  minio-storage:
