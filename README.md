@@ -28,15 +28,15 @@ See https://docs.docker.com/get-docker/ for help installing Docker on your syste
 
 ## Starting and Stopping
 
-To start the application stack from the directory containing the `dev-apps.yaml` file, execute the following:
+To start the application stack from the directory containing the `docker-compose.yaml` file, execute the following:
 
-    docker-compose -f dev-apps.yaml up -d
+    docker-compose up -d
 
 _Note:_ The `-d` flag runs the applications in the background ("detached mode").
 
-To stop the applications, execute:
+To stop the applications (from the directory containing the `docker-compose.yaml` file), execute:
 
-    docker-compose -f dev-apps.yaml down
+    docker-compose down
 
 ## Accessing Services
 

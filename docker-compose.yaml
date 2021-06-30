@@ -1,7 +1,6 @@
 # Docker-Compose YAML for a development applications
 
-
-version: "3.9"
+# Note: Not secure
 
 services:
   # MongoDB: NoSQL document database
@@ -15,7 +14,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: devdbpass
-  
+
   # PosgreSQL: Relational database
   postgres:
     image: postgres
@@ -28,7 +27,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: devdbpass
       POSTGRES_DB: dev
-  
+
   # MySQL: Relational database
   mysql:
     image: mysql
@@ -54,7 +53,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongodb
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: devdbpass
-  
+
   # Adminer: Simple web GUI for relational DBs
   adminer:
     image: adminer
